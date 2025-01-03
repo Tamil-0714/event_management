@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Resourse Managment</title>
+    <link rel="stylesheet" href="/loginStyle.css" />
+  </head>
+  <body>
+    <h2>Admin login page</h2>
+    <form action="/admin/login" method="post" id="admin-login-form">
+      <div class="userIdContainer">
+        <label for="uName">User name</label>
+        <input type="text" id="uName" <%- style ? `style="${style}"` : '' %> required name="userName" />
+      </div>
+      <div class="userPassContainer">
+        <label for="uPass">Password</label>
+        <input type="password" id="uPass" <%- style ? `style="${style}"` : '' %> required name="password" />
+      </div>
+      <button type="submit">Submit</button>
+    </form>
+  </body>
+</html>

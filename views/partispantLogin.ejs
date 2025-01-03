@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Event Managment</title>
+    <link rel="stylesheet" href="/loginStyle.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.19.1/cdn/themes/light.css"
+    />
+    <script
+      type="module"
+      src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.19.1/cdn/shoelace-autoloader.js"
+    ></script>
+  </head>
+  <body>
+    <h2>partispant login page</h2>
+    <form action="/partispant/login" method="post" id="partispant-login-form">
+      <div class="userIdContainer">
+        <label for="uName">User name</label>
+        <input type="text" id="uName" <%- style ? `style="${style}"` : '' %>
+        required name="userName" />
+      </div>
+      <div class="userPassContainer">
+        <label for="uPass">Password</label>
+        <input type="password" id="uPass" <%- style ? `style="${style}"` : '' %>
+        required name="password" />
+      </div>
+      <button type="submit">Submit</button>
+    </form>
+  </body>
+</html>

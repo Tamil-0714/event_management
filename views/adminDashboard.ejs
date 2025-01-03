@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" class="sl-theme-dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Resourse manaagment</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.19.0/cdn/themes/light.css"
+    />
+
+    <script
+      type="module"
+      src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.19.0/cdn/shoelace-autoloader.js"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.19.0/cdn/themes/dark.css"
+    />
+    <link rel="stylesheet" href="/adminStyle.css" />
+  </head>
+  <body>
+    <sl-tab-group placement="top">
+      <sl-tab slot="nav" panel="events">Upcoming Events</sl-tab>
+      <sl-tab slot="nav" panel="uevents">Events Histroy</sl-tab>
+      <sl-tab slot="nav" panel="parispants">Parispations To events</sl-tab>
+      <sl-tab slot="nav" panel="logout"
+        ><button id="logout-button">Logout</button></sl-tab
+      >
+
+      <sl-tab-panel name="events" class="users-container">
+        
+      </sl-tab-panel>
+      <sl-tab-panel name="uevents"> 
+        
+      </sl-tab-panel>
+      <sl-tab-panel name="parispants"> 
+        
+      </sl-tab-panel>
+    </sl-tab-group>
+    <!-- <div id="profile-info"></div> -->
+
+    <script src="/adminDashboard.js"></script>
+  </body>
+</html>

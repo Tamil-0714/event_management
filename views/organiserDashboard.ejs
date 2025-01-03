@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Organiser Dashboard</title>
+    <link rel="stylesheet" href="/Organiserdashboard.css">
+    <script defer src="/Organiserdashboard.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Create New Event</h1>
+        </header>
+        <form id="parent-event-form">
+            <!-- Parent Event Section -->
+            <section class="form-section">
+                <h2>Parent Event</h2>
+                <div class="form-group">
+                    <label for="event-name">Event Name</label>
+                    <input type="text" id="event-name" name="eventName" placeholder="Enter event name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="event-type">Event Type</label>
+                    <select id="event-type" name="eventType" required>
+                        <option value="" disabled selected>Select event type</option>
+                        <option value="Workshop">Workshop</option>
+                        <option value="Symposium">Symposium</option>
+                        <option value="Seminar">Seminar</option>
+                        <option value="Cultural Events">Cultural Events</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="event-date">Event Date</label>
+                    <input type="date" id="event-date" name="eventDate" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="event-description">Event Description</label>
+                    <textarea id="event-description" name="eventDescription" rows="3" placeholder="Provide a brief description"></textarea>
+                </div>
+            </section>
+
+            <!-- Child Events Section -->
+            <section class="form-section">
+                <h2>Child Events</h2>
+                <div id="child-event-form">
+                    <div class="form-group">
+                        <label for="child-event-name">Child Event Name</label>
+                        <input type="text" id="child-event-name" name="childEventName" placeholder="Enter child event name">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="child-event-type">Child Event Type</label>
+                        <input type="text" id="child-event-type" name="childEventType" placeholder="Enter type">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="max-participants">Max Participants</label>
+                        <input type="number" id="max-participants" name="maxParticipants" placeholder="e.g. 100">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="child-event-description">Child Event Description</label>
+                        <textarea id="child-event-description" name="childEventDescription" rows="2" placeholder="Provide a brief description"></textarea>
+                    </div>
+
+                    <button type="button" id="add-child-event" class="secondary-btn">+ Add Child Event</button>
+                </div>
+            </section>
+
+            <!-- Display Child Event Badges -->
+            <div id="child-events-container"></div>
+
+            <!-- Submit Button -->
+            <button type="submit" class="primary-btn">Submit Event</button>
+        </form>
+    </div>
+</body>
+</html>
