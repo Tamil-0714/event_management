@@ -12,7 +12,7 @@ const {
 
 const bcrypt = require("bcrypt");
 const handleLogin = require("./routes/loginRoute");
-const { insertEvents } = require("./DB/db");
+const { insertEvents, fetchAllEvents } = require("./DB/db");
 
 const app = express();
 const port = 8050;
@@ -25,7 +25,7 @@ app.use(express.json());
 
 // Session Configuration
 app.use(
-  session({
+  session({ 
     secret: "iam_iron_man",
     resave: false,
     saveUninitialized: true,
@@ -212,6 +212,39 @@ app.post(
         message: "Internal server error. Please contact support.",
       });
     }
+  }
+);
+
+app.get("/partispant/login", partispantLogged, (req, res) => {
+  res.render("partispantLogin", { style: undefined });
+});
+
+app.post("/partispant/login", async (req, res) => {
+  const { userName, password } = req.body;
+  console.log(userName, password);
+  if (userName && password) {
+    await handleLogin(userName, password, "partispant", async (result) => {
+      if (result) {
+        req.session.user = { userName, role: "partispant" };
+        return res.redirect("/partispant/dashboard");
+      } else {
+        return res.render("partispantLogin", {
+          style: "border: 1px solid red;",
+        });
+      }
+    });
+  } else {
+    return res.render("partispantLogin", { style: "border: 1px solid red;" });
+  }
+});
+
+app.get(
+  "/partispant/dashboard",
+  ensurePartispantAuthenticated,
+  async (req, res) => {
+    res.render("partispantDashboard", {
+      events: await fetchAllEvents(),
+    });
   }
 );
 

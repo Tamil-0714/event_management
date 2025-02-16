@@ -8,16 +8,14 @@
   </head>
   <body>
     <h2>Student login page</h2>
-    <form action="/partispant/login" method="post" id="admin-login-form">
+    <form action="/student/login" method="post" id="admin-login-form">
       <div class="userIdContainer">
         <label for="uName">User name</label>
-        <input type="text" id="uName" <%- style ? `style="${style}"` : '' %>
-        required name="userName" />
+        <input type="text" id="uName" <%- style ? `style="${style}"` : '' %> required name="userName" />
       </div>
       <div class="userPassContainer">
         <label for="uPass">Password</label>
-        <input type="password" id="uPass" <%- style ? `style="${style}"` : '' %>
-        required name="password" />
+        <input type="password" id="uPass" <%- style ? `style="${style}"` : '' %> required name="password" />
       </div>
       <button type="submit">Submit</button>
     </form>

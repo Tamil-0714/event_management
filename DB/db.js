@@ -33,7 +33,7 @@ async function fetchCred(id, flag) {
         query = "SELECT * FROM organiser WHERE organiser_id = ?";
         break;
       case "partispant":
-        query = "SELECT * FROM partispant WHERE student_id = ?";
+        query = "SELECT * FROM partispants WHERE partispant_id = ?";
         break;
     }
     const params = [id];
@@ -112,7 +112,18 @@ async function insertEvents(
   }
 }
 
+async function fetchAllEvents() {
+  try {
+    const query = "SELECT * FROM parent_event";
+    const params = [];
+    return await queryDB(query, params);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
 module.exports = {
   fetchCred,
   insertEvents,
+  fetchAllEvents,
 };

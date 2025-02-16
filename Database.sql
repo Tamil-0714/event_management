@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jan 03, 2025 at 09:34 PM
+-- Generation Time: Feb 16, 2025 at 10:53 PM
 -- Server version: 8.0.39-0ubuntu0.22.04.1
 -- PHP Version: 8.1.2-1ubuntu2.20
 
@@ -53,6 +53,14 @@ CREATE TABLE `child_event` (
   `event_id` int NOT NULL,
   `description` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `child_event`
+--
+
+INSERT INTO `child_event` (`child_event_id`, `child_event_name`, `child_event_type`, `max_partispant`, `event_id`, `description`) VALUES
+(1, 'Python for Web', 'same', 40, 1, 'talk about how python is using on web development'),
+(2, 'Python for data analytics', 'same', 40, 1, 'how python is used for data analytics');
 
 -- --------------------------------------------------------
 
@@ -113,6 +121,14 @@ CREATE TABLE `parent_event` (
   `description` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+--
+-- Dumping data for table `parent_event`
+--
+
+INSERT INTO `parent_event` (`event_id`, `event_name`, `event_type`, `event_date`, `organiser_id`, `description`) VALUES
+(1, 'Python workShop', 'Workshop', '2025-02-22', '01ooc123', 'this workshop help to build a strong career in python development'),
+(2, 'new event ', 'Seminar', '2025-02-20', '01ooc123', 'a good seminar');
+
 -- --------------------------------------------------------
 
 --
@@ -124,6 +140,13 @@ CREATE TABLE `partispants` (
   `partispant_name` varchar(255) NOT NULL,
   `pass` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `partispants`
+--
+
+INSERT INTO `partispants` (`partispant_id`, `partispant_name`, `pass`) VALUES
+('std01', 'Vijay', '$2b$10$v7BmpfdW0oJeUcF5jcXAKumgs2Qx/BwfKiw0T4sgIjfWBr.Bkcweq');
 
 --
 -- Indexes for dumped tables
@@ -185,13 +208,13 @@ ALTER TABLE `partispants`
 -- AUTO_INCREMENT for table `child_event`
 --
 ALTER TABLE `child_event`
-  MODIFY `child_event_id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `child_event_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `parent_event`
 --
 ALTER TABLE `parent_event`
-  MODIFY `event_id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `event_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Constraints for dumped tables

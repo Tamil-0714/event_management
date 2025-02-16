@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Events List</title>
+    <link rel="stylesheet" href="/partispantDashboard.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Upcoming Events</h1>
+        <div class="event-list">
+            <% events.forEach(event => { %>
+                <div class="event-card">
+                    <h2><%= event.event_name %></h2>
+                    <p class="type"><strong>Type:</strong> <%= event.event_type %></p>
+                    <p class="date"><strong>Date:</strong> <%= event.event_date %></p>
+                    <p class="organiser"><strong>Organiser ID:</strong> <%= event.organiser_id %></p>
+                    <p class="description"><%= event.description %></p>
+                </div>
+            <% }); %>
+        </div>
+    </div>
+</body>
+</html>
