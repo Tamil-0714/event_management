@@ -29,14 +29,22 @@
       >
 
       <sl-tab-panel name="events" class="users-container">
-        
+        <div class="event-list">
+          <% events.forEach(event => { %>
+          <div class="event-card">
+            <h2><%= event.event_name %></h2>
+            <p class="type"><strong>Type:</strong> <%= event.event_type %></p>
+            <p class="date"><strong>Date:</strong> <%= event.event_date %></p>
+            <p class="organiser">
+              <strong>Organiser ID:</strong> <%= event.organiser_id %>
+            </p>
+            <p class="description"><%= event.description %></p>
+          </div>
+          <% }); %>
+        </div>
       </sl-tab-panel>
-      <sl-tab-panel name="uevents"> 
-        
-      </sl-tab-panel>
-      <sl-tab-panel name="parispants"> 
-        
-      </sl-tab-panel>
+      <sl-tab-panel name="uevents"> </sl-tab-panel>
+      <sl-tab-panel name="parispants"> </sl-tab-panel>
     </sl-tab-group>
     <!-- <div id="profile-info"></div> -->
 

@@ -25,7 +25,7 @@ app.use(express.json());
 
 // Session Configuration
 app.use(
-  session({ 
+  session({
     secret: "iam_iron_man",
     resave: false,
     saveUninitialized: true,
@@ -63,7 +63,7 @@ app.post("/admin/login", async (req, res) => {
 
 app.get("/admin/dashboard", ensureAdminAuthenticated, async (req, res) => {
   try {
-    res.render("adminDashboard");
+    res.render("adminDashboard", { events: await fetchAllEvents() });
   } catch (error) {
     console.error("Error fetching dashboard data:", error);
     res.status(500).send("An error occurred while loading the dashboard");
@@ -245,6 +245,14 @@ app.get(
     res.render("partispantDashboard", {
       events: await fetchAllEvents(),
     });
+  }
+);
+app.post(
+  "/partispant/joinEvent",
+  ensurePartispantAuthenticated,
+  async (req, res) => {
+    console.log(req.body);
+    res.status(200).json({success:true});
   }
 );
 

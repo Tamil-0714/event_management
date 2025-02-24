@@ -1,25 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Events List</title>
-    <link rel="stylesheet" href="/partispantDashboard.css">
-</head>
-<body>
+    <link rel="stylesheet" href="/partispantDashboard.css" />
+  </head>
+  <body>
     <div class="container">
-        <h1>Upcoming Events</h1>
-        <div class="event-list">
-            <% events.forEach(event => { %>
-                <div class="event-card">
-                    <h2><%= event.event_name %></h2>
-                    <p class="type"><strong>Type:</strong> <%= event.event_type %></p>
-                    <p class="date"><strong>Date:</strong> <%= event.event_date %></p>
-                    <p class="organiser"><strong>Organiser ID:</strong> <%= event.organiser_id %></p>
-                    <p class="description"><%= event.description %></p>
-                </div>
-            <% }); %>
+      <h1>Upcoming Events</h1>
+      <div class="event-list">
+        <% events.forEach(event => { %>
+        <div class="event-card">
+          <h2><%= event.event_name %></h2>
+          <p class="type"><strong>Type:</strong> <%= event.event_type %></p>
+          <p class="date"><strong>Date:</strong> <%= event.event_date %></p>
+          <p class="organiser">
+            <strong>Organiser ID:</strong> <%= event.organiser_id %>
+          </p>
+          <p class="description"><%= event.description %></p>
+          <button
+            onclick="joinEvent('<%= event.event_id %>')"
+            style="
+              background-color: #28a745;
+              color: white;
+              padding: 10px 20px;
+              border: none;
+              border-radius: 5px;
+              cursor: pointer;
+              font-size: 16px;
+              font-weight: bold;
+              transition: background 0.3s;
+            "
+            onmouseover="this.style.backgroundColor='#218838'"
+            onmouseout="this.style.backgroundColor='#28a745'"
+          >
+            Enroll to this event
+          </button>
         </div>
+        <% }); %>
+      </div>
     </div>
-</body>
+
+    <script>
+      function joinEvent(eventId) {
+        fetch("http://localhost:8050/partispant/joinEvent", {
+          method: "POST",
+          credentials: "include",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ eventId: eventId }),
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            if (data.success) {
+              alert("Successfully joined the event!");
+            } else {
+              alert("Failed to join: " + data.message);
+            }
+          })
+          .catch((error) => console.error("Error:", error));
+      }
+    </script>
+  </body>
 </html>
