@@ -12,7 +12,12 @@ const {
 
 const bcrypt = require("bcrypt");
 const handleLogin = require("./routes/loginRoute");
-const { insertEvents, fetchAllEvents } = require("./DB/db");
+const {
+  insertEvents,
+  fetchAllEvents,
+  enrollEvent,
+  fetchAllEnrollments,
+} = require("./DB/db");
 
 const app = express();
 const port = 8050;
@@ -63,7 +68,10 @@ app.post("/admin/login", async (req, res) => {
 
 app.get("/admin/dashboard", ensureAdminAuthenticated, async (req, res) => {
   try {
-    res.render("adminDashboard", { events: await fetchAllEvents() });
+    res.render("adminDashboard", {
+      events: await fetchAllEvents(),
+      enrollments: await fetchAllEnrollments(),
+    });
   } catch (error) {
     console.error("Error fetching dashboard data:", error);
     res.status(500).send("An error occurred while loading the dashboard");
@@ -252,7 +260,13 @@ app.post(
   ensurePartispantAuthenticated,
   async (req, res) => {
     console.log(req.body);
-    res.status(200).json({success:true});
+
+    try {
+      await enrollEvent(req.body.eventId, req?.session?.user?.userName);
+      res.status(200).json({ success: true });
+    } catch (error) {
+      res.status(200).json({ success: false });
+    }
   }
 );
 

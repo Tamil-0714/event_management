@@ -17,6 +17,29 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.19.0/cdn/themes/dark.css"
     />
+    <style>
+      body {
+        /* background-color: #e8f5e9; */
+        font-family: Arial, sans-serif;
+      }
+      table {
+        width: 80%;
+        margin: auto;
+        border-collapse: collapse;
+        background-color: #a5d6a7; /* Green */
+        color: #1b5e20; /* Dark Green */
+      }
+      th,
+      td {
+        border: 1px solid #2e7d32;
+        padding: 10px;
+        text-align: left;
+      }
+      th {
+        background-color: #66bb6a;
+        color: white;
+      }
+    </style>
     <link rel="stylesheet" href="/adminStyle.css" />
   </head>
   <body>
@@ -44,7 +67,30 @@
         </div>
       </sl-tab-panel>
       <sl-tab-panel name="uevents"> </sl-tab-panel>
-      <sl-tab-panel name="parispants"> </sl-tab-panel>
+      <sl-tab-panel name="parispants">
+        <h2 style="text-align: center; color: #1b5e20">Enrollment Details</h2>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Enroll ID</th>
+              <th>Participant Name</th>
+              <th>Event Name</th>
+              <th>Enrolled Time</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% enrollments.forEach(row => { %>
+            <tr>
+              <td><%= row.enroll_id %></td>
+              <td><%= row.partispant_name %></td>
+              <td><%= row.event_name %></td>
+              <td><%= row.enrolled_time %></td>
+            </tr>
+            <% }); %>
+          </tbody>
+        </table>
+      </sl-tab-panel>
     </sl-tab-group>
     <!-- <div id="profile-info"></div> -->
 

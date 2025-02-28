@@ -122,8 +122,37 @@ async function fetchAllEvents() {
   }
 }
 
+async function fetchAllEnrollments() {
+  try {
+    const query = `SELECT 
+    e.enroll_id,
+    p.partispant_name,
+    ev.event_name,
+    e.enrolled_time
+FROM event_enrolments e
+JOIN partispants p ON e.partispant_id = p.partispant_id
+JOIN parent_event ev ON e.event_id = ev.event_id;
+`;
+    const params = [];
+    return await queryDB(query, params);
+  } catch (error) {}
+}
+async function enrollEvent(eventId, userId) {
+  try {
+    const query =
+      "INSERT INTO `event_enrolments` (`enroll_id`, `partispant_id`, `event_id`, `enrolled_time`) VALUES (NULL, ?, ?, CURRENT_TIMESTAMP)";
+    const params = [userId, eventId];
+    return await queryDB(query, params);
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+}
+
 module.exports = {
   fetchCred,
   insertEvents,
   fetchAllEvents,
+  enrollEvent,
+  fetchAllEnrollments,  
 };
